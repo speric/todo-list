@@ -30,4 +30,8 @@ class ApplicationController < ActionController::Base
         return false
       end
     end
+    
+    def user_can_update_item
+      @item.user_id == @current_user.id
+    end
 end

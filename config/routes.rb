@@ -1,7 +1,11 @@
 ChargifyTodoList::Application.routes.draw do
   resources :user_sessions
   resources :users
-  resources :items
+  resources :items do
+    member do
+      post 'mark_as_complete'
+    end
+  end
 
   match 'signin' => 'user_sessions#new', :as => :signin
   match 'signout' => 'user_sessions#destroy', :as => :signout
