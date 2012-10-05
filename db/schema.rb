@@ -11,7 +11,18 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121005215346) do
+ActiveRecord::Schema.define(:version => 20121005224703) do
+
+  create_table "items", :force => true do |t|
+    t.integer  "user_id",                        :null => false
+    t.string   "title",       :default => "",    :null => false
+    t.text     "description"
+    t.boolean  "completed",   :default => false, :null => false
+    t.integer  "sort_order",  :default => 0
+    t.date     "due_date"
+    t.datetime "created_at",                     :null => false
+    t.datetime "updated_at",                     :null => false
+  end
 
   create_table "sessions", :force => true do |t|
     t.string   "session_id", :default => "", :null => false

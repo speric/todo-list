@@ -1,0 +1,19 @@
+<h1>Your Items</h1>
+
+<div class="row">
+   <div class="span9">
+   <% @items.each do |item| %>
+     <div class="well">
+		   <h3><%= h item.title %></h3>
+			 <% unless item.description.blank? %>
+			   <p><b>Description:</b> <%= h item.description %></p>
+			 <% end %>
+			 <% unless item.due_date.blank? %>
+			   <p><b>Due Date:</b> <%= item.pretty_due_date %></p>
+			 <% end %>
+     </div>
+		<% end %>
+  </div>
+</div>
+
+<%= link_to "Create a New To Do Item", new_item_path, :class => "btn" %>

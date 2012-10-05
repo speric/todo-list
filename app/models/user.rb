@@ -5,5 +5,7 @@ class User < ActiveRecord::Base
     config.ignore_blank_passwords = true
   end
   
+  has_many :items, :order => "sort_order asc"
+  
   validates :email_address, :presence => true, :uniqueness => true, :format => { :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i }
 end

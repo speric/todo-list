@@ -14,7 +14,7 @@ class UserSessionsController < ApplicationController
     @user_session = UserSession.new(User.find_by_email_address(params[:user_session][:email_address]))
     if @user_session.save
       flash[:notice] = "Sign in successful"
-      redirect_to account_url
+      redirect_to items_path
     else
       render :action => :new
     end
