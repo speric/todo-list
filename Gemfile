@@ -6,7 +6,8 @@ gem 'rails', '3.2.2'
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 gem 'mysql2'
-
+gem 'twitter-bootstrap-rails'
+gem 'authlogic'
 
 # Gems used only for assets and not required
 # in production environments by default.
