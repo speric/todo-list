@@ -20,20 +20,18 @@ class ItemsController < ApplicationController
   end
   
   def mark_as_complete
-    begin
-      item = Item.find(params[:id])
-    rescue => e
-      flash[:error] = "Item not found."
-      redirect_to items_path
-    end
+    @item = Item.find(params[:id])
     
-    if user_can_update_item(@current_user, item)
-      Item.update(item, :completed => true)
+    if user_can_update_item(@current_user, @item)
+      Item.update(@item, :completed => true)
       flash[:notice] = "Item marked as complete."
     else
       flash[:error] = "You do not have access to that item."
     end
-    redirect_to items_path
+    respond_to do |format|
+      format.html { redirect_to items_path }
+      format.js
+    end
   end
   
   def save_sort_order
