@@ -17,7 +17,7 @@
 					 <% unless item.due_date.blank? %>
 					   <b>Due Date:</b> <%= item.pretty_due_date %><br/>
 					 <% end %>
-		       <%= form_for item, :url => mark_as_complete_item_path(item), :method => :post do |form| %>
+		       <%= form_for item, :url => mark_as_complete_item_path(item), :method => :post, :remote => :true do |form| %>
 					   <%= form.submit "Mark As Complete", :class => 'btn btn-success' %>
 					 <% end %>
 			    </div>
