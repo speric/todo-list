@@ -1,0 +1,8 @@
+<% unless flash[:notice].blank? %>
+  $('#instructions').append('<div class="alert alert-success"><%= escape_javascript(flash[:notice]) %></div>');
+  $('#item_<%= @item.id %>').remove();
+<% end %>
+
+<% unless flash[:error].blank? %>
+  $('#instructions').append('<div class="alert alert-error"><%= escape_javascript(flash[:error]) %></div>');
+<% end %>
