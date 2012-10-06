@@ -1,22 +1,46 @@
 <h1>Your Outstanding Items</h1>
 
+<p><%= link_to "Create a New To Do Item", new_item_path, :class => "btn" %></p>
+
+<div id="instructions"><p>Grab by title to re-sort.  Click "Save Sort Order" when you're finished sorting.</p></div>
+
 <div class="row">
    <div class="span9">
-   <% @items.each do |item| %>
-     <div class="well">
-		   <h3><%= h item.title %></h3>
-			 <% unless item.description.blank? %>
-			   <p><b>Description:</b> <%= h item.description %></p>
-			 <% end %>
-			 <% unless item.due_date.blank? %>
-			   <p><b>Due Date:</b> <%= item.pretty_due_date %></p>
-			 <% end %>
-       <%= form_for item, :url => mark_as_complete_item_path(item), :method => :post do |form| %>
-			   <%= form.submit "Mark As Complete", :class => 'btn btn-success' %>
-			 <% end %>
-      </div>
-		<% end %>
+	   <ul id="todo_items">
+	   <% @items.each do |item| %>
+	     <li id="item_<%= item.id %>">
+		     <div>
+				   <h3 class="handle"><%= h item.title %></h3>
+					 <% unless item.description.blank? %>
+					   <b>Description:</b> <%= h item.description %><br/>
+					 <% end %>
+					 <% unless item.due_date.blank? %>
+					   <b>Due Date:</b> <%= item.pretty_due_date %><br/>
+					 <% end %>
+		       <%= form_for item, :url => mark_as_complete_item_path(item), :method => :post do |form| %>
+					   <%= form.submit "Mark As Complete", :class => 'btn btn-success' %>
+					 <% end %>
+			    </div>
+		    </li>
+			<% end %>
+		</ul>
   </div>
 </div>
 
-<%= link_to "Create a New To Do Item", new_item_path, :class => "btn" %>
+<%= form_for :items, :url => :save_sort_order, :html => {:id => "hidden_sort_form"}, :remote => true do |f| %>
+	<input type="hidden" name="sort_order[]" value="" id="sort_order"/>
+	<%= f.submit "Save Sort Order", :class => 'btn btn-primary' %>
+<% end %>
+
+<script>
+$(document).ready(function() {
+	$("#todo_items").sortable({
+  	handle : '.handle',
+		update : function () {
+			$('#sort_order').val($('#todo_items').sortable('serialize'));
+			$('#sort-success').remove();
+			//$('#hidden_sort_form').submit();
+     }
+	});
+});
+</script>

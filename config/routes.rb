@@ -6,7 +6,7 @@ ChargifyTodoList::Application.routes.draw do
       post 'mark_as_complete'
     end
   end
-
+  match 'save_sort_order' => 'items#save_sort_order', :as => :save_sort_order, :via => :post
   match 'signin' => 'user_sessions#new', :as => :signin
   match 'signout' => 'user_sessions#destroy', :as => :signout
   

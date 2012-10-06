@@ -11,3 +11,6 @@
  *= require_self
  *= require_tree .
 */
+
+#todo_items h3.handle {cursor: move;}
+#todo_items { list-style-type: none;}

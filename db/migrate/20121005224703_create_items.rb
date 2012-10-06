@@ -5,7 +5,7 @@ class CreateItems < ActiveRecord::Migration
       t.string :title, :null => false
       t.text :description, :null => true
       t.boolean :completed, :null => false, :default => false
-      t.integer :sort_order, :null => true, :default => 0
+      t.integer :sort_order, :null => true, :default => 1
       t.date :due_date, :null => true
       t.timestamps
     end

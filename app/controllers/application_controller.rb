@@ -31,7 +31,7 @@ class ApplicationController < ActionController::Base
       end
     end
     
-    def user_can_update_item
-      @item.user_id == @current_user.id
+    def user_can_update_item(user, item)
+      user.id == item.user_id
     end
 end
