@@ -20,7 +20,7 @@
 
 5 - Start local server
 
-`rails server`
+`$ rails server`
 
 6 - Navigate to [http://localhost:3000](http://localhost:3000)
 
