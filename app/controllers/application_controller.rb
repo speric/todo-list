@@ -4,6 +4,8 @@ class ApplicationController < ActionController::Base
   helper :all
   helper_method :current_user_session, :current_user
   
+  after_filter :clear_flash
+  
   private
     def current_user_session
       return @current_user_session if defined?(@current_user_session)
@@ -33,5 +35,9 @@ class ApplicationController < ActionController::Base
     
     def user_can_update_item(user, item)
       user.id == item.user_id
+    end
+    
+    def clear_flash
+      flash.discard
     end
 end

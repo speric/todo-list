@@ -12,7 +12,7 @@ class UserSessionsController < ApplicationController
   
   def create
     @user_session = UserSession.new(User.find_by_email_address(params[:user_session][:email_address]))
-    @user_session.remember_me = params[:user_session][:remember_me] == "0" ? false : true
+    @user_session.remember_me = true
     
     if @user_session.save
       @user_session
