@@ -14,7 +14,11 @@
 
 3 - Update `config/database.yml` with the proper database information for your local db
 
-4 - Migrate database
+4 - Make log and tmp dirs
+
+`$ mkdir log tmp`
+
+5 - Migrate database
 
 `$ rake db:migrate`
 
@@ -22,7 +26,7 @@
 
 `$ rails server`
 
-6 - Navigate to [http://localhost:3000](http://localhost:3000)
+7 - Navigate to [http://localhost:3000](http://localhost:3000)
 
 Developed by [Eric Farkas](mailto:speric@gmail.com) for Chargify.
 
