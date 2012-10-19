@@ -38,6 +38,7 @@ class ItemsController < ApplicationController
     unless params[:sort_order].first.blank?
       item_ids = Array.new
       params[:sort_order].first.split("&").each {|key| item_ids << key.split('=').last }
+      logger.error item_ids
       Item.update_all("sort_order = 0", ["user_id = ?", @current_user.id])
       current_sort_counter = 1
       item_ids.each do |item_id|
