@@ -42,4 +42,10 @@ class ItemsControllerTest < ActionController::TestCase
     assert_redirected_to items_path
     assert_equal flash[:notice], "Item marked as complete."
   end
+
+  test "sort items" do
+    UserSession.create(users(:eric))
+    post :save_sort_order, :format => 'js', :sort_order => ["item[]=#{items(:two).id}&item[]=#{items(:three).id}&item[]=#{items(:one).id}"]
+    assert_equal flash[:notice], "Sort order saved."
+  end
 end
