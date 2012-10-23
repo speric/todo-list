@@ -12,7 +12,7 @@ development:
   adapter: mysql2
   encoding: utf8
   reconnect: false
-  database: chargify_todo_list_dev
+  database: todo_list_dev
   pool: 5
   username: root
   password:
@@ -25,7 +25,7 @@ test:
   adapter: mysql2
   encoding: utf8
   reconnect: false
-  database: chargify_todo_list_test
+  database: todo_list_test
   pool: 5
   username: root
   password:
@@ -35,7 +35,7 @@ production:
   adapter: mysql2
   encoding: utf8
   reconnect: false
-  database: chargify_todo_list_produ
+  database: todo_list_prod
   pool: 5
   username: root
   password:
