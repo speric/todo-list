@@ -35,6 +35,7 @@ class ItemsController < ApplicationController
   end
   
   def save_sort_order
+    # this is awful
     unless params[:sort_order].first.blank?
       item_ids = Array.new
       params[:sort_order].first.split("&").each {|key| item_ids << key.split('=').last }
