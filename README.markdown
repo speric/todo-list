@@ -10,17 +10,17 @@ $ git clone git@github.com:speric/todo-list.git
 $ cd todo-list
 ```
 
-2 - Update `config/database.yml` with the proper database information for your local db
+2 - Install gems
 
-3 - Migrate database
+`$ bundle install`
+
+3 - Update `config/database.yml` with the proper database information for your local db
+
+4 - Migrate database
 ```
 $ rake db:create:all
 $ rake db:migrate
 ```
-
-4 - Install gems
-
-`$ bundle install`
 
 5 - Start local server
 
