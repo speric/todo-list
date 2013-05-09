@@ -10,11 +10,11 @@ $ git clone git@github.com:speric/todo-list.git
 $ cd todo-list
 ```
 
-2 - Install gems
+2 - Update `config/database.yml` with the proper database information for your local db
+
+3 - Install gems
 
 `$ bundle install`
-
-3 - Update `config/database.yml` with the proper database information for your local db
 
 4 - Migrate database
 ```
