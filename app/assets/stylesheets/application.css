@@ -12,5 +12,5 @@
  *= require_tree .
 */
 
-#todo_items h3.handle {cursor: move;}
+#todo_items h4.handle {cursor: move;}
 #todo_items { list-style-type: none;}
