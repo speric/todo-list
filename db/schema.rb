@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121005224703) do
+ActiveRecord::Schema.define(:version => 20130510002429) do
 
   create_table "items", :force => true do |t|
     t.integer  "user_id",                        :null => false
@@ -23,6 +23,10 @@ ActiveRecord::Schema.define(:version => 20121005224703) do
     t.datetime "created_at",                     :null => false
     t.datetime "updated_at",                     :null => false
   end
+
+  add_index "items", ["completed"], :name => "index_items_on_completed"
+  add_index "items", ["sort_order"], :name => "index_items_on_sort_order"
+  add_index "items", ["user_id"], :name => "index_items_on_user_id"
 
   create_table "sessions", :force => true do |t|
     t.string   "session_id", :null => false
@@ -42,5 +46,8 @@ ActiveRecord::Schema.define(:version => 20121005224703) do
     t.datetime "created_at",          :null => false
     t.datetime "updated_at",          :null => false
   end
+
+  add_index "users", ["email_address"], :name => "index_users_on_email_address"
+  add_index "users", ["persistence_token"], :name => "index_users_on_persistence_token"
 
 end
