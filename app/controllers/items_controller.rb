@@ -41,7 +41,12 @@ class ItemsController < ApplicationController
         item.sort_order = index + 1
         item.save
       end
-    end
     flash[:notice] = "Sort order saved."
+    end
+    
+    respond_to do |format|
+      format.html { redirect_to items_path }
+      format.js
+    end
   end
 end
