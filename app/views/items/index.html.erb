@@ -9,18 +9,7 @@
 	   <ul id="todo_items">
 	   <% @items.each do |item| %>
 	     <li id="item_<%= item.id %>">
-		     <div>
-				   <h4 class="handle"><%= h item.title %></h4>
-					 <% unless item.description.blank? %>
-					   <b>Description:</b> <%= h item.description %><br/>
-					 <% end %>
-					 <% unless item.due_date.blank? %>
-					   <b>Due Date:</b> <%= item.pretty_due_date %><br/>
-					 <% end %>
-		       <%= form_for item, :url => mark_as_complete_item_path(item), :method => :post, :remote => :true do |form| %>
-					   <%= form.submit "Mark As Complete", :class => 'btn btn-success btn-small' %>
-					 <% end %>
-			    </div>
+		     <%= render item %>
 		    </li>
 			<% end %>
 		</ul>
