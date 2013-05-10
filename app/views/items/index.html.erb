@@ -4,6 +4,11 @@
 
 <div id="instructions"><p>Grab by title to re-sort.  Click "Save Sort Order" when you're finished sorting.</p></div>
 
+<%= form_for :items, :url => :save_sort_order, :html => {:id => "hidden_sort_form"}, :remote => true do |f| %>
+	<input type="hidden" name="sort_order[]" value="" id="sort_order"/>
+	<%= f.submit "Save Sort Order", :class => 'btn btn-primary btn-small' %>
+<% end %>
+
 <div class="row">
    <div class="span9">
 	   <ul id="todo_items">
@@ -15,11 +20,6 @@
 		</ul>
   </div>
 </div>
-
-<%= form_for :items, :url => :save_sort_order, :html => {:id => "hidden_sort_form"}, :remote => true do |f| %>
-	<input type="hidden" name="sort_order[]" value="" id="sort_order"/>
-	<%= f.submit "Save Sort Order", :class => 'btn btn-primary' %>
-<% end %>
 
 <script>
 $(document).ready(function() {
