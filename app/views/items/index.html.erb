@@ -1,6 +1,6 @@
-<h1>Your Outstanding Items</h1>
+<h3>Your To-Do List Items</h4>
 
-<p><%= link_to "Create a New To Do Item", new_item_path, :class => "btn" %></p>
+<p><%= link_to "Create a New To Do Item", new_item_path, :class => "btn btn-small" %></p>
 
 <div id="instructions"><p>Grab by title to re-sort.  Click "Save Sort Order" when you're finished sorting.</p></div>
 
@@ -10,7 +10,7 @@
 	   <% @items.each do |item| %>
 	     <li id="item_<%= item.id %>">
 		     <div>
-				   <h3 class="handle"><%= h item.title %></h3>
+				   <h4 class="handle"><%= h item.title %></h4>
 					 <% unless item.description.blank? %>
 					   <b>Description:</b> <%= h item.description %><br/>
 					 <% end %>
@@ -18,7 +18,7 @@
 					   <b>Due Date:</b> <%= item.pretty_due_date %><br/>
 					 <% end %>
 		       <%= form_for item, :url => mark_as_complete_item_path(item), :method => :post, :remote => :true do |form| %>
-					   <%= form.submit "Mark As Complete", :class => 'btn btn-success' %>
+					   <%= form.submit "Mark As Complete", :class => 'btn btn-success btn-small' %>
 					 <% end %>
 			    </div>
 		    </li>
@@ -39,7 +39,6 @@ $(document).ready(function() {
 		update : function () {
 			$('#sort_order').val($('#todo_items').sortable('serialize'));
 			$('#sort-success').remove();
-			//$('#hidden_sort_form').submit();
      }
 	});
 });

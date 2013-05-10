@@ -6,11 +6,11 @@ class ItemsController < ApplicationController
   end
   
   def new
-    @item = Item.new
+    @item = @current_user.items.new
   end
   
   def create
-    @item = Item.new(params[:item])
+    @item = @current_user.items.new(params[:item])
     if @item.save
       flash[:notice] = "Item created"
       redirect_to items_path
@@ -20,14 +20,14 @@ class ItemsController < ApplicationController
   end
   
   def mark_as_complete
-    @item = Item.find(params[:id])
+    @item = @current_user.items.find(params[:id])
     
-    if user_can_update_item(@current_user, @item)
-      Item.update(@item, :completed => true)
+    if @item.update_attributes({:completed => true})
       flash[:notice] = "Item marked as complete."
     else
-      flash[:error] = "You do not have access to that item."
+      flash[:error] = "There was an error updating that item."
     end
+
     respond_to do |format|
       format.html { redirect_to items_path }
       format.js
@@ -36,16 +36,10 @@ class ItemsController < ApplicationController
   
   def save_sort_order
     unless params[:sort_order].first.blank?
-      item_ids = Array.new
-      params[:sort_order].first.split("&").each {|key| item_ids << key.split('=').last }
-      Item.update_all("sort_order = 0", ["user_id = ?", @current_user.id])
-      current_sort_counter = 1
-      item_ids.each do |item_id|
-        item = Item.find(item_id)
-        if user_can_update_item(@current_user, item)
-          Item.update(item, :sort_order => current_sort_counter)
-          current_sort_counter += 1
-        end
+      params[:sort_order].first.split("&").map { |key| key.split('=').last }.each_with_index do |item_id, index|
+        item = @current_user.items.find(item_id)
+        item.sort_order = index + 1
+        item.save
       end
     end
     flash[:notice] = "Sort order saved."
