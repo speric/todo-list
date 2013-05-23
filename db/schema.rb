@@ -18,7 +18,7 @@ ActiveRecord::Schema.define(:version => 20130510002429) do
     t.string   "title",                          :null => false
     t.text     "description"
     t.boolean  "completed",   :default => false, :null => false
-    t.integer  "sort_order",  :default => 1
+    t.integer  "sort_order",  :default => 0
     t.date     "due_date"
     t.datetime "created_at",                     :null => false
     t.datetime "updated_at",                     :null => false
