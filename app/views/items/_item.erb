@@ -3,6 +3,9 @@
   <% unless item.description.blank? %>
     <b>Description:</b> <%= h item.description %><br/>
   <% end %>
+  <% unless item.list.nil? %>
+    <b>List:</b> <%= h item.list.name %></br>
+  <% end %>
   <% unless item.due_date.blank? %>
     <b>Due Date:</b> <%= item.pretty_due_date %><br/>
   <% end %>

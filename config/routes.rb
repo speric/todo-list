@@ -1,6 +1,7 @@
 ChargifyTodoList::Application.routes.draw do
   resources :user_sessions
   resources :users
+  resources :lists
   resources :items do
     member do
       post 'mark_as_complete'

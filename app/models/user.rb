@@ -6,6 +6,8 @@ class User < ActiveRecord::Base
   end
   
   has_many :items, :order => "sort_order asc"
+  has_many :lists
+  has_many :orphan_items, :conditions => {:list_id => nil}, :order => "sort_order asc"
   has_many :open_items, :class_name => 'Item', :conditions => {:completed => false}, :order => "sort_order asc"
 
   validates :email_address, :presence => true, :uniqueness => true, :format => { :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i }

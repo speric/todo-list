@@ -4,6 +4,8 @@ class CreatingItemsTest < ActionDispatch::IntegrationTest
   def test_creating_items_with_existing_list
     login
 
+    get "/items"
+    assert_select "select[name='item[list_id]']"
     list = List.create(:name => "First List", :user_id => @user.id)
     post "/items", :item => {:title => "Yay", :list_id => list.id}
     follow_redirect!

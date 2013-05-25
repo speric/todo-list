@@ -21,6 +21,13 @@
 		</div>
 
 		<div class="control-group">
+		  <%= form.label :list, :class => 'control-label' %>
+		  <div class="controls">
+		    <%= form.select :list_id, options_for_select(@current_user.lists.map{ |list| [list.name, list.id] }) %>
+		  </div>
+		</div>
+
+		<div class="control-group">
 	  	<%= form.label :due_date, :class => 'control-label' %>
 	    <div class="controls">
 				<%= form.date_select :due_date, :order => [:month, :day, :year], :include_blank => true %>
