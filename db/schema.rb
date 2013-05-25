@@ -11,22 +11,33 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130510002429) do
+ActiveRecord::Schema.define(:version => 20130523214824) do
 
   create_table "items", :force => true do |t|
     t.integer  "user_id",                        :null => false
     t.string   "title",                          :null => false
     t.text     "description"
     t.boolean  "completed",   :default => false, :null => false
-    t.integer  "sort_order",  :default => 1
+    t.integer  "sort_order",  :default => 0
     t.date     "due_date"
     t.datetime "created_at",                     :null => false
     t.datetime "updated_at",                     :null => false
+    t.integer  "list_id"
   end
 
   add_index "items", ["completed"], :name => "index_items_on_completed"
+  add_index "items", ["list_id"], :name => "index_items_on_list_id"
   add_index "items", ["sort_order"], :name => "index_items_on_sort_order"
   add_index "items", ["user_id"], :name => "index_items_on_user_id"
+
+  create_table "lists", :force => true do |t|
+    t.integer  "user_id",    :null => false
+    t.string   "name",       :null => false
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "lists", ["user_id"], :name => "index_lists_on_user_id"
 
   create_table "sessions", :force => true do |t|
     t.string   "session_id", :null => false
